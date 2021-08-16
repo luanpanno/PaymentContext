@@ -13,7 +13,7 @@ namespace PaymentContext.Domain.Entities
         public decimal Total { get; private set; }
         public decimal TotalPaid { get; private set; }
         public string Payer { get; private set; }
-        public Document Document { get; set; }
+        public Document Document { get; private set; }
         public Address Address { get; private set; }
         public Email Email { get; private set; }
 
