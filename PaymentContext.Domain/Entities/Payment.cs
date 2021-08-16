@@ -38,11 +38,10 @@ namespace PaymentContext.Domain.Entities
             Address = address;
             Email = email;
 
-            AddNotifications(
-                new Contract<Payment>()
-                    .Requires()
-                    .IsGreaterThan(0, Total, "Payment.Total", "Payment Total must be greater than 0 (zero)")
-                    .IsGreaterOrEqualsThan(Total, TotalPaid, "Payment.PaidTotal", "Payment Total Paid must be greater or equal than Payment Total")
+            AddNotifications(new Contract()
+                .Requires()
+                .IsLowerOrEqualsThan(0, Total, "Payment.Total", "Payment total must be greater than 0 (zero)")
+                .IsGreaterOrEqualsThan(Total, TotalPaid, "Payment.TotalPaid", "Payment total paid must be greather than Payment total")
             );
         }
     }

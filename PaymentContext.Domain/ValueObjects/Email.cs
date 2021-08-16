@@ -11,7 +11,7 @@ namespace PaymentContext.Domain.ValueObjects
         {
             Address = address;
 
-            AddNotifications(new Contract<Email>().Requires().IsEmail(Address, "Email.Address", "Invalid email"));
+            AddNotifications(new Contract().Requires().IsEmail(Address, "Email.Address", "Invalid email"));
         }
     }
 }

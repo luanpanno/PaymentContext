@@ -13,7 +13,7 @@ namespace PaymentContext.Domain.Entities
         public DateTime LastUpdateDate { get; private set; }
         public DateTime? ExpireDate { get; private set; }
         public bool Active { get; private set; }
-        public IReadOnlyCollection<Payment> Payments { get { return _payments.ToList(); } }
+        public IReadOnlyCollection<Payment> Payments { get { return _payments.ToArray(); } }
 
         public Subscription(DateTime? expireDate)
         {
@@ -27,7 +27,7 @@ namespace PaymentContext.Domain.Entities
         public void AddPayment(Payment payment)
         {
             AddNotifications(
-                new Contract<Subscription>()
+                new Contract()
                     .Requires()
                     .IsGreaterThan(DateTime.Now, payment.PaidDate, "Subscription.Payments", "The payment date must be a future date")
             );

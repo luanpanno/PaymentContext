@@ -23,10 +23,9 @@ namespace PaymentContext.Domain.ValueObjects
             Country = country;
             ZipCode = zipCode;
 
-            AddNotifications(
-                new Contract<Address>()
-                    .Requires()
-                    .IsGreaterOrEqualsThan(Street, 3, "Address.Street", "Street must have at least 3 characters")
+            AddNotifications(new Contract()
+                .Requires()
+                .HasMinLen(Street, 3, "Address.Street", "Street must contains at least 3 characters")
             );
         }
     }

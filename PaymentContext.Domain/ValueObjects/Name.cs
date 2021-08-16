@@ -13,12 +13,11 @@ namespace PaymentContext.Domain.ValueObjects
             FirstName = firstName;
             LastName = lastName;
 
-            AddNotifications(
-                new Contract<Name>()
-                    .Requires()
-                    .IsGreaterOrEqualsThan(FirstName, 1, "Name.FirstName", "Name must have at least 3 characters")
-                    .IsGreaterOrEqualsThan(LastName, 1, "Name.LastName", "Last Name must have at least 3 characters")
-                    .IsLowerOrEqualsThan(FirstName, 40, "Name.FirstName", "Name must have at most 40 characters")
+            AddNotifications(new Contract()
+                .Requires()
+                .HasMinLen(FirstName, 3, "Name.FirstName", "Name must contains at least 3 characters")
+                .HasMinLen(LastName, 3, "Name.LastName", "Last Name must contains at least 3 characters")
+                .HasMaxLen(FirstName, 40, "Name.FirstName", "Name must contains at most 3 characters")
             );
         }
     }
